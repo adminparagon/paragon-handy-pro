@@ -818,17 +818,22 @@
       if (form) {
         form.addEventListener('submit', function(e) {
           e.preventDefault();
-          // Fire generate_lead conversion event
+          // Fire GA4 generate_lead event
           gtag('event', 'generate_lead', {
             'event_category': 'Contact Form',
             'event_label': 'Service Request',
             'value': 1,
             'send_to': 'G-Y081E267EY'
           });
-          // Submit form after giving gtag time to fire (300ms)
+          // Fire Google Ads conversion event
+          gtag('event', 'ads_conversion_Contact_Us_1', {
+            'value': 1.0,
+            'currency': 'USD'
+          });
+          // Submit form after giving gtag time to fire (400ms)
           setTimeout(function() {
             form.submit();
-          }, 300);
+          }, 400);
         });
       }
     });
